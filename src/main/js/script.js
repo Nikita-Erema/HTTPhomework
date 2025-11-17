@@ -1,5 +1,6 @@
 import { hideModalWindow } from "./function.js";
 import { actualDelete } from "./addCard.js";
+import { reloadPage, deleteTicket } from "./serverRequest.js";
 export const addTicketBtn = document.querySelector('.add_tiket_btn');
 export const questionEdit = document.querySelector('.question_edit_card');
 export const questionRemove = document.querySelector('.question_delete_card');
@@ -29,5 +30,9 @@ export function closeAll() {
 
 document.querySelector('.delete_ticket').addEventListener('click', () => {
     closeAll();
-    actualDelete.remove();
-})
+    deleteTicket(actualDelete.target.getAttribute('id'), actualDelete.target)
+});
+
+
+
+document.addEventListener('DOMContentLoaded', reloadPage);
