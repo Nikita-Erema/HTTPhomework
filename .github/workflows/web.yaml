@@ -1,4 +1,4 @@
-name: cssAnimation
+name: HTTPhomework
 
 on:
   push:
@@ -34,7 +34,6 @@ jobs:
         with:
           node-version: 22.14.0
           cache: 'npm'
-      - run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
