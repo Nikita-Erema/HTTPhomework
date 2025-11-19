@@ -1,6 +1,6 @@
 import { hideModalWindow } from "./function.js";
 import { actualDelete } from "./addCard.js";
-import { reloadPage, deleteTicket } from "./serverRequest.js";
+import { reloadPage, deleteTicket, editTicket } from "./serverRequest.js";
 export const addTicketBtn = document.querySelector('.add_tiket_btn');
 export const questionEdit = document.querySelector('.question_edit_card');
 export const questionRemove = document.querySelector('.question_delete_card');
@@ -33,6 +33,15 @@ document.querySelector('.delete_ticket').addEventListener('click', () => {
     deleteTicket(actualDelete.target.getAttribute('id'), actualDelete.target)
 });
 
+document.querySelector('.edit_ticket').addEventListener('click', () => {
+    if (questionEdit.children[0].children[0].value.trim() == '' || questionEdit.children[1].children[0].value.trim() == '') { return; }
+    
+    if ((editTicket(actualDelete.target.getAttribute('id'), questionEdit.children[0].children[0].value, questionEdit.children[1].children[0].value, actualDelete.target.children[0].checked))) {
+        actualDelete.target.querySelector('.name_card').textContent = questionEdit.children[0].children[0].value;
+        actualDelete.target.querySelector('.description').textContent = questionEdit.children[1].children[0].value;
+    }
 
+    closeAll();
+})
 
 document.addEventListener('DOMContentLoaded', reloadPage);

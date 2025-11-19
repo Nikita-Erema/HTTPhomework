@@ -1,5 +1,5 @@
-import { hideModalWindow, createTicket } from "./function.js";
-import { closeAll, questionAdd, questionEdit, questionRemove } from "./script.js";
+import { createTicket } from "./function.js";
+import { closeAll, } from "./script.js";
 import { addCardServer } from "./serverRequest.js";
 const addCard = document.querySelector('.add_ticket');
 const formAdd = document.querySelector('.add_ticket_form');
@@ -14,7 +14,7 @@ addCard.addEventListener('click', (e) => {
     }
     if (text(0).trim() == '' || text(1).trim() == '') return;
     
-    let result = (createTicket(text(0)));
+    let result = (createTicket(text(0), text(1)));
 
     addCardServer({
         description: text(1),

@@ -25,12 +25,13 @@
 }
 
 .card {
-    height: 60px;
-    width: 90%;
+    height: max-content;
+    width: 100%;
     border: 2px solid black;
     display: flex;
     align-items: center;
     flex-direction: row;
+    justify-content: space-between;
     gap: 20px;
     box-sizing: border-box;
 }
@@ -84,4 +85,20 @@
 
 input[type="text"] {
     width: 90%;
+}
+
+.description {
+    width: 100%;
+    position: absolute;
+    visibility: hidden;
+}
+
+.description_active {
+    position: relative;
+    visibility: visible;
+}
+
+.box_button {
+    display: flex;
+    gap: 20px;
 }
