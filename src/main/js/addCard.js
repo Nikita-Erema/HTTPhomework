@@ -3,7 +3,6 @@ import { closeAll, } from "./script.js";
 import { addCardServer } from "./serverRequest.js";
 const addCard = document.querySelector('.add_ticket');
 const formAdd = document.querySelector('.add_ticket_form');
-export const date = new Date()
 export const actualDelete = {
     target: null
 };
@@ -12,7 +11,7 @@ addCard.addEventListener('click', (e) => {
     const text = (number) => {
         return formAdd.children[number].children[0].value
     }
-    if (text(0).trim() == '' || text(1).trim() == '') return;
+    if (text(0).trim() == '') return;
     
     let result = (createTicket(text(0), text(1)));
 

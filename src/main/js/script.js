@@ -19,12 +19,12 @@ document.querySelectorAll('.close_module').forEach((e) => {
 })
 
 export function closeAll() {
+    questionAdd.querySelector('.name_text').value = '' 
+    questionAdd.querySelector('.description_text').value = '' 
+    questionEdit.querySelector('.name_text').value = '' 
+    questionEdit.querySelector('.description_text').value = '' 
     questionAdd.classList.add('close');
-    questionAdd.children[0].children[0].children[0].value = '' 
-    questionAdd.children[0].children[1].children[0].value = '' 
     questionEdit.classList.add('close');
-    questionEdit.children[0].children[0].value = '' 
-    questionEdit.children[1].children[0].value = '' 
     questionRemove.classList.add('close');
 }
 
@@ -34,11 +34,11 @@ document.querySelector('.delete_ticket').addEventListener('click', () => {
 });
 
 document.querySelector('.edit_ticket').addEventListener('click', () => {
-    if (questionEdit.children[0].children[0].value.trim() == '' || questionEdit.children[1].children[0].value.trim() == '') { return; }
+    if (questionEdit.querySelector('.name_text').value.trim() == '') { return; }
     
-    if ((editTicket(actualDelete.target.getAttribute('id'), questionEdit.children[0].children[0].value, questionEdit.children[1].children[0].value, actualDelete.target.children[0].checked))) {
-        actualDelete.target.querySelector('.name_card').textContent = questionEdit.children[0].children[0].value;
-        actualDelete.target.querySelector('.description').textContent = questionEdit.children[1].children[0].value;
+    if ((editTicket(actualDelete.target.getAttribute('id'), questionEdit.querySelector('.name_text').value, questionEdit.querySelector('.description_text').value, actualDelete.target.children[0].checked))) {
+        actualDelete.target.querySelector('.name_card').textContent = questionEdit.querySelector('.name_text').value;
+        actualDelete.target.querySelector('.description').textContent = questionEdit.querySelector('.description_text').value;
     }
 
     closeAll();

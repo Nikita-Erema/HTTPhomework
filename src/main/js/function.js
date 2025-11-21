@@ -1,4 +1,3 @@
-import { date } from "./addCard.js";
 import { questionAdd, questionEdit, questionRemove } from "./script.js";
 import { actualDelete } from "./addCard.js";
 import { editTicket } from "./serverRequest.js";
@@ -23,11 +22,25 @@ export function createTicket(nameText, descriptionText, id, status, time) {
     name.classList.add('name_card'); 
     name.textContent = nameText;
     
-    const timestamp = document.createElement('p');
+    const timestamp = document.createElement('time');
     if (time) {
-        timestamp.textContent = `${date.getUTCDate()}.${date.getUTCMonth() + 1}.${(time/31536000000+1970).toFixed(0)}`
+        const date = new Date(time);
+        const y = date.getFullYear();
+        const m = date.getMonth() + 1;
+        const d = date.getDate();
+        const h = date.getHours();
+        const min = date.getMinutes();
+    
+        timestamp.textContent = `${d.toString().padStart(2, "0")}.${m.toString().padStart(2, "0")}.${y} ${h.toString().padStart(2, "0")}:${min.toString().padStart(2, "0")}`;
     } else {
-        timestamp.textContent = `${date.getUTCDate()}.${date.getUTCMonth()}.${date.getUTCFullYear()}`+ " " + `${date.getUTCHours() + 3}:${date.getUTCMinutes()}`
+        const date = new Date();
+        const y = date.getFullYear();
+        const m = date.getMonth() + 1;
+        const d = date.getDate();
+        const h = date.getHours();
+        const min = date.getMinutes();
+
+        timestamp.textContent = `${d.toString().padStart(2, "0")}.${m.toString().padStart(2, "0")}.${y} ${h.toString().padStart(2, "0")}:${min.toString().padStart(2, "0")}`;
     }
     timestamp.classList.add('timestamp_card');
     
@@ -62,7 +75,8 @@ export function createTicket(nameText, descriptionText, id, status, time) {
 
 
     ticket.addEventListener('click', (e) => {
-        if (e.target.localName == 'div' || e.target.localName == 'p') {
+        if (descriptionText.trim() == '') {return;} 
+        if (e.target.localName !== 'button' && e.target.localName !== 'input') {
             description.classList.toggle('description_active')
         }
     });
