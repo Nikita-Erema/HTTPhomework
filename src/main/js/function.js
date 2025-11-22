@@ -1,6 +1,6 @@
 import { questionAdd, questionEdit, questionRemove } from "./script.js";
 import { actualDelete } from "./addCard.js";
-import { editTicket } from "./serverRequest.js";
+import { editTicket, editQuestion } from "./serverRequest.js";
 export function hideModalWindow(first, second) {
     first.classList.add('close');
     second.classList.add('close');
@@ -47,10 +47,14 @@ export function createTicket(nameText, descriptionText, id, status, time) {
     const buttonEdit = document.createElement('button');
     buttonEdit.classList.add('edit_card', 'btn')
     buttonEdit.textContent = '✎'
-    buttonEdit.addEventListener('click', () => {
+    buttonEdit.addEventListener('click', async () => {
         hideModalWindow(questionAdd, questionRemove);
         
         actualDelete.target = ticket;
+        const text = await editQuestion(actualDelete.target.id);
+        console.log()
+        questionEdit.querySelector('.name_text').value = text[0];
+        questionEdit.querySelector('.description_text').value = text[1]
         questionEdit.classList.toggle('close');
     });
 

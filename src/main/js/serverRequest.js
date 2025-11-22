@@ -1,6 +1,6 @@
 import { createTicket } from "./function.js";
 export async function addCardServer(bodyTicket, ticket) {
-    let responce = await fetch('http://localhost:7070?method=createTicket', {
+    let responce = await fetch('http://localhost:7070/?method=createTicket', {
         method: 'POST',
         body: JSON.stringify(bodyTicket)
     });
@@ -13,6 +13,12 @@ export async function addCardServer(bodyTicket, ticket) {
         console.log('error')
     }
 };
+
+export async function editQuestion(id) {
+    let responce = await fetch(`http://localhost:7070/?method=ticketById&id=${id}`);
+    let result = await responce.json();
+    return [result.name, result.description];
+}
 
 export async function reloadPage() {
     let responce = await fetch('http://localhost:7070/?method=allTickets')

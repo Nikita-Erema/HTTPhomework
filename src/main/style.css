@@ -76,7 +76,9 @@
     transform: translate(-50%, -50%);
     border: 2px solid black;
     width: 40%;
-    height: 20%;
+    height: max-content;
+    min-width: 300px;
+    min-height: 200px;
     text-align: center;
     padding: 10px;
     display: flex;
@@ -84,6 +86,7 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: #fff;
+    z-index: 9999;
 }
  
 .close {

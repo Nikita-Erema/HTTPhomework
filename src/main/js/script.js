@@ -10,7 +10,7 @@ addTicketBtn.addEventListener('click', () => {
     hideModalWindow(questionRemove, questionEdit);
 
     questionAdd.classList.toggle('close');
-})
+});
 
 document.querySelectorAll('.close_module').forEach((e) => {
     e.addEventListener('click', () => {
